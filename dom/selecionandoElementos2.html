@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #02</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo"><span wb-attrib>.terceiro .ultimo</span></div>
+    <script>     
+        // querySelector - mesmo que retorne vários elementos, ele devolve apenas o primeiro         
+        document.querySelector("#primeiro").classList.add("destaque");
+
+        // querySelectorAll - retorno um nodeList, não é necessário converter para array antes de fazer um forEach
+        const selecionar = seletor =>
+            document.querySelectorAll(seletor).forEach(e => e.classList.add("destaque"));
+
+        const deselecionar = seletor =>
+            document.querySelectorAll(seletor).forEach(e => e.classList.remove("destaque"));
+
+        selecionar("div");
+
+        deselecionar("*");
+
+        selecionar(".terceiro.ultimo"); //seleciona todos os elementos que tenham as duas classes "terceiro e ultimo"
+
+        deselecionar("*");
+
+        selecionar(":not(#primeiro)"); //seleciona todos os elementos que não tenham o id=primeiro
+
+        deselecionar("*");
+
+        selecionar(":nth-child(1)"); //seleciona o primeiro elemento, tanto de fora de uma div quanto de dentro
+
+        deselecionar("*");
+
+        selecionar("div:nth-of-type(1)"); //seleciona o primeiro elemento do tipo "div"
+        // selecionar("span:nth-of-type(1)"); //seleciona o primeiro elemento do tipo "span"
+
+        deselecionar("*");
+
+        selecionar("[wb-attrib]"); //seleciona todos os elementos que tem o atributo personalizado [wb-attrib]
+        //[...document.querySelectorAll("div")] = no browser, seleciona todas as divs através do operador "spread"
+    </script>
+</body>
+</html>

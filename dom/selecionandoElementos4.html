@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #04</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <p>Início</p>
+    </div>
+    <div>
+        <ul>
+            <li>Pedro</li>
+            <li>Ana</li>
+            <li>Bia</li>
+        </ul>
+    </div>
+    <div>
+        <p>Fim</p>
+    </div>
+    <script>
+        function log(){
+            console.log(this);
+        }
+        HTMLCollection.prototype.log = log;
+        HTMLElement.prototype.log = log;
+        NodeList.prototype.log = log;
+        Node.prototype.log = log;
+
+        const lista = document.querySelector("div ul");
+        lista.parentNode.log(); //pega o elemento "pai" a partir de um determinado elemento
+        lista.childNodes.log(); //retorna a lista de nodes porém, traz também os espaços em branco
+
+        const primeiro = lista.firstChild;
+        primeiro.log();
+        primeiro.nextSibling.log();
+
+        const ultimo = lista.lastChild;
+        ultimo.log();
+        ultimo.previousSibling.log();
+
+        lista.children.log(); //retorna um html collection
+        lista.firstElementChild.log(); //traz de fato o primeiro elemento da lista e não o espaço em branco
+        lista.lastElementChild.log(); //traz de fato o ultimo elemento da lista e não o espaço em branco
+        lista.parentNode.previousElementSibling.log(); //retorna o elemento irmão anterior ao elemento
+        lista.parentNode.nextElementSibling.log(); //retorna o elemento irmão próximo ao elemento
+
+        document.querySelectorAll("div ul li").log(); // desta forma não corre o risco de retornar os espaços em branco
+    </script>
+</body>
+
+</html>

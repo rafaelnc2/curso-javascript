@@ -1,0 +1,80 @@
+</html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #03</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+        }
+        
+        .esquerda {
+            height: 100vh;
+            width: 50%;
+            background-color: coral;
+        }
+        
+        .direita {
+            height: 100vh;
+            width: 50%;
+            background-color: cornflowerblue;
+        }
+        
+        .item {
+            border: solid 5px black;
+            background-color: darkgrey;
+            color: white;
+            height: 100px;
+            font-size: 40px;
+            margin: 10px;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="esquerda" wm-dropzone>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div class="direita" wm-dropzone></div>
+    <script>
+        const itens = document.querySelectorAll("[wm-dropzone] .item");
+        itens.forEach( (item, index) => {
+            item.draggable = true; //informa ao javascript que o item poderá ser arrastado
+            item.id = item.id || `draggable-item-${index}`; //adiciona um ID ao item, caso ele não tenha
+            item.ondragstart = (e) => 
+                e.dataTransfer.setData("item-id", e.target.id); //no momento do transfeer, será informado no 
+                //setData o id do item que está sendo arrastado para identificar o término do evento
+        })
+
+        const dropzones = document.querySelectorAll("[wm-dropzone]");
+        dropzones.forEach( (dropzone) => {
+            dropzone.ondragover = e => e.preventDefault(); //identifica quando o item para de ser arrastado
+            // - NÃO É O MOMENTO QUE SOLTA O BOTÃO DO MOUSE MAS SIM O MOMENTO EM QUE O ITEM ESTÁ PARADO - 
+            //e.preventDefault() - previne que a ação padrão seja executada e permite que execute a próxima ação descrita
+            dropzone.ondrop = function(e){
+                //identifica quando o botão do mouse é solto
+                //o proximo evento pega o item setado no dataTransfer e o adiciona na dropzone
+                const id = e.dataTransfer.getData("item-id");
+                const item = document.getElementById(id);
+                e.target.appendChild(item); //faz um append do item que está sendo arrastado para dentro do item on o mouse parou
+                //permitindo com que um item fique dentro dou outro.
+                //dropzone.appendChild(item); //desta forma, permite que o item seja arrastado apenas para dentro da dropzone
+                //e não para dentro de qualquer outro item
+
+                /*
+                    Como o elemento com id é único, ao ser arrastado ele é removido do local de origem e colocado no local de destino
+                */
+            }
+        })
+    </script>
+</body>
+
+</html>
