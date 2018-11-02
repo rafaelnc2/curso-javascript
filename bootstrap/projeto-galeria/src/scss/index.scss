@@ -1,0 +1,10 @@
+//o acento ~ = indica que o arquivo deve ser procurado dentro do node_modules
+//importa os arquivos referentes ao bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+//sobrescreve a variavel padrão do scss para indicar onde deve ser procurada a fonte
+//importa os arquivos referentes a font font-awesome
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+@import "custom";
