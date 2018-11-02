@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Unidades #02</title>
+    <style>
+        .fora{
+            position: relative;
+            background-color:orange;
+            height: 400px;
+            width: 400px;
+            padding:50px;
+        }
+
+        .dentro{
+            background-color:mediumvioletred;
+            height: 100px;
+            width: 100%;
+            position: static;
+            /* Quando não informamos o tipo de "position" o padrão é o "static", que ocupa apenas o espaço do conteúdo. */
+            position: relative; /* Considera apenas o tamanho do conteúdo */
+            position: absolute; /* Considera o tamanho do conteúdo + o tamanho do padding */
+            position: fixed; /* Se baseia no tamanho do viewport e não da div pai */
+        }
+    </style>
+</head>
+<body>
+    <div class="fora">
+        <div class="dentro"></div>
+    </div>
+</body>
+</html>

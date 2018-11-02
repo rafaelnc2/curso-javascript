@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+    <style>
+        body{
+            font-size:40px;
+            color:white;
+            background-color:coral;
+        }
+
+        ul{ padding: 0px; }
+        div{ background-color: seagreen; }
+        span{ background-color: dodgerblue; }
+        li{ background-color: purple; }
+
+        div, span, li{
+            width:50%;
+            width:200px;
+            height: 80px;
+            padding-top: 30px;
+            text-align: center;
+
+            display: block; /* Display block coloca cada elemento em uma linha */
+            display: inline; /* Display inline ignora a alteração de altura e largura */
+            display: inline-block; /* Display inline-block é a mesma coisa que o inline, porém, aceita alterações na altura e largura */
+        }
+    </style>
+</head>
+
+<body>
+    <div>Texto 1</div>
+    <span>Texto 2</span>
+    <span>Texto 3</span>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+</body>
+
+</html>
