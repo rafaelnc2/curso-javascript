@@ -1,0 +1,33 @@
+- Sempre um modulo é instalado com o comando "--save", uma área de dependencia é criada no 
+package dizendo que este projeto possui módulos que precisam ser instalados 
+
+
+Versão "major.minor.fix"
+
+- Quando a versão do módulo instalado inicia com ^("axios": "^0.18.0"), significa que o módulo
+pode ser atualizado apenas em sua versão "minor";
+
+- Quando a versão inicia com ~("axios": "~0.18.0"), significa o módulo poder atualizado em sua versão "fix"
+
+- Quando a versão não contém nenhum caractere na frente, significa que o módulo não pode ser atualiza, 
+que será instalada apenas a versão que está especificada
+
+Instalação
+"npm install --save-dev axios@0.17.1 -E
+- o comando "--save-dev" significa que você pode incluir uma biblioteca apenas para dev;
+- "axios@0.17.1" indica qual a biblioteca deve ser incluida e qual a versão
+- "-E" indica que a versão a ser instalada deve ser exatamente a versão indicada sem 
+    a possibilidade de atualização automática
+
+
+- Quando for enviar os arquivos para o servidor, não é necessário enviar a pasta node_modules
+basta executar o comando "npm install" que o npm instala todos os modulos que foram declarados
+como dependencia no package.json
+
+- No campo "scripts" são declaradas funções que podem ser executadas a partir do terminal, 
+por exemplo, "start" e "test", que são funções reservadas do node, através do comando
+"npm start"
+- As funções declaradas no campo "scripts" podem ser alteradas. No package atual, a função "start"
+está apontando para o modulo "nodemon", pode ser colocado qualquer script
+- Para executar funções que não são reservadas, é necessário digitar "npm run dev", por exemplo. 
+A palavra "run" deve ser digitada toda vez que desejar executar um script que não seja reservado
