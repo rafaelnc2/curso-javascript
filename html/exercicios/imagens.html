@@ -1,0 +1,97 @@
+<div wm-slider>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" 
+            alt="Muro da cidade" width="513" height="342" title="Muro da cidade por Tarso Bessa">
+    </p>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" 
+                alt="Intro Cod3r" height="342">
+    </p>
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" 
+            alt="Rio de Janeiro" height="342">
+    </p>
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" 
+            alt="Avatar" height="50" align="left">
+            Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris. Delegadis gente finis, bibendum egestas augue arcu ut est. Sapien in monti palavris qui num significa nadis i pareci latim. Si num tem leite então bota uma pinga aí cumpadi!
+    </p>
+    <p class="cidade"></p>
+    <p>
+        <picture>
+            <!-- Picture funciona como se fosse um "case", é possível colocar mais de um "source" como limitações diferentes de "media querys"
+            e caso nenhum deles atenda, será mostrado o "img" final -->
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png" media="(min-width:600px)">
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="">
+        </picture>
+    </p>
+</div>
+
+<style>
+    p{
+        position: absolute;
+        display: none;
+    }
+    .circular{
+        width: 513px;
+        background-color: #444
+    }
+    .texto{
+        width: 400px;
+    }
+    .texto img{
+        margin-right: 10px;
+    }
+
+    .cidade{
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+</style>
+
+<script>
+    function mover(elem, inicio, fim, passo, callback){
+        const novoInicio = inicio - passo;
+        if(novoInicio >= fim){
+            elem.style.left = novoInicio + "px";
+            setTimeout(()=> mover(elem, novoInicio, fim, passo, callback), 7);
+        }else{
+            callback();
+        }
+    }
+
+    // const p = document.querySelector("[wm-slider] > p");
+    // p.style.display = "block";
+    // mover(p, 1500, -520, 5, ()=>{
+    //     console.log("Terminou!!!");
+    // });
+
+    function slider(){
+        const elementos = document.querySelectorAll("[wm-slider] > p"); //Retorna um "node list" e não um array
+        const slides = Array.from(elementos); //Transforma o "node list" em um array
+        exibirSlides(slides, slides[0]);
+    }
+
+    function exibirSlides(slides, slide){
+        slide.style.display = "block";
+        const inicio = innerWidth; //Informa qual a largura atual do browser
+        const fim = -slide.clientWidth; //Informa qual a largura do cliente, neste caso, da tag p atual
+
+        slide.style.left = `${inicio}px`;
+        mover(slide, inicio, fim, 5, ()=>{
+            slide.style.display = "none";
+            exibirSlides(slides, getProximoSlide(slides, slide));
+        });
+    }
+
+    function getProximoSlide(lista, atual){
+        const i = lista.indexOf(atual) + 1;
+        return i < lista.length ? lista[i] : lista[0];
+    }
+
+    slider();
+</script>

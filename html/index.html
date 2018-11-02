@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercícios HTML</title>
+
+    <style>
+        #conteudo{
+            padding: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercícios HTML</h1>
+    </header>
+    
+    <nav>
+        <a href wm-nav="exercicios/teste.html"> 00 - Teste </a> |
+        <a href wm-nav="exercicios/texto1.html"> 01 - Texto 1 </a> |
+        <a href wm-nav="exercicios/texto2.html"> 02 - Texto 2 </a> |
+        <a href wm-nav="exercicios/listas.html"> 03 - Listas </a> |
+        <a href wm-nav="exercicios/listaAninhada.html"> 04 - Lista Aninhada </a> |
+        <a href wm-nav="exercicios/links.html"> 05 - Links </a> |
+        <a href wm-nav="exercicios/tabela.html"> 06 - Tabelas </a> |
+        <a href wm-nav="exercicios/form/form.html"> 07 - Formulário </a> |
+        <a href wm-nav="exercicios/imagens.html"> 08 - Imagens </a> |
+        <a href wm-nav="exercicios/video.html"> 09 - Video </a> |
+        <a href wm-nav="exercicios/tagsNaoVisuais.html"> 10 - Tags Não Visuais </a>
+    </nav>
+    
+    <section id="conteudo"></section>
+    
+    <footer>
+        Curso de Web Moderno
+    </footer>
+
+    <script>
+        //Seelciona todas as TAGs 'a' e faz um "forEach" pelos elementos encontrados
+        document.querySelectorAll('[wm-nav]').forEach(link => {
+            const conteudo = document.getElementById("conteudo");
+
+            //adiciona uma função "onclick" para cada um dos elementos encontrados
+            link.onclick = function(e){
+                //previne que o comportamento padrão, que é a navegação, ocorra. Ou seja, impede que a ação padrão aconteça.
+                e.preventDefault();
+                
+                // "Fetch" é uma forma mais nova baseada em "promises (ES2015)" de se fazer requisições. Antigamente era utilizado o "xmlhttprequest" 
+                //porém o "fetch" é mais simples e dispensa a utilização de qualquer biblioteca para executar requisições ajax
+                fetch(link.getAttribute("wm-nav"))
+                    //após a promise inicial ser resolvida, é executado then da resposta retornando o conteúdo html da página
+                    .then(resp => resp.text())
+                    //resolvida a segunda promise, é executada outra onde o conteúdo obtido na execuçã anterior é inserido como html
+                    //dentro da variável conteúdo declarada no inicio da função
+                    .then(html => conteudo.innerHTML = html)
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+
+    Observações:
+        Para iniciar o http-server na pasta corrente
+            - http-server .
+
+        Para iniciar o http-server na pasta corrente sem cache
+            - http-server -c-1 .
+
+ -->

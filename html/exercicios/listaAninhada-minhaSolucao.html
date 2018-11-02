@@ -1,0 +1,51 @@
+<h1>Projeto</h1>
+
+<ul class="tree">
+    <li>
+        <a href="ul-backend">Backend</a>
+        <ul id="ul-backend">
+            <li>
+                <a href="ul-app">App</a>
+                <ul id="ul-app">
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                <a href="ul-config">Config</a>
+                <ul id="ul-config">
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js'</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="ul-front">Frontend</a>
+        <ul id="ul-front">
+            <li>
+                <a href="ul-public">Public</a>
+                <ul id="ul-public">
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+    
+<script>
+    document.querySelectorAll("a").forEach(link => {
+        link.onclick = function(e){
+            e.preventDefault();
+            let target = link.getAttribute("href");
+            let elemen = document.getElementById(target); 
+            elemen.style.display = (elemen.style.display != "none" ? "none" : "block");
+        }
+    });
+</script>
