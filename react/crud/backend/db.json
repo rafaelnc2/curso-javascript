@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "name": "Ana Silva Alt",
+      "email": "ana@negocio.com.br",
+      "id": 3
+    },
+    {
+      "name": "Rafael Naville",
+      "email": "rafael.nc2@gmail.com",
+      "id": 4
+    },
+    {
+      "name": "Natália Naville",
+      "email": "natalia.naville@gmail.com",
+      "id": 5
+    },
+    {
+      "name": "Helena Naville",
+      "email": "helena.naville@gmail.com",
+      "id": 6
+    }
+  ]
+}
